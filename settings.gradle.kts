@@ -16,28 +16,14 @@ hytale {
 
     repositories {
         // Any external repositories besides: MavenLocal, MavenCentral, HytaleMaven, and CurseMaven
-        exclusiveContent {
-            forRepository {
-                ivy {
-                    name = "Modtale"
-                    url = uri("https://api.modtale.net/api/v1")
-                    patternLayout {
-                        artifact("projects/[module]/versions/[revision]/download")
-                    }
-                    metadataSources {
-                        artifact()
-                    }
-                }
-            }
-            filter {
-                includeGroup("modtale")
-            }
+        flatDir {
+            dirs("libs")
         }
     }
 
     dependencies {
         // Any external dependency you also want to include
-        compileOnly("modtale:3e453e84-81af-46bf-9e7d-c7de99d9c4f0:0.1.0-alpha@jar")
+        implementation("com.example:HyCompute:0.1.0-alpha")
     }
 
     manifest {

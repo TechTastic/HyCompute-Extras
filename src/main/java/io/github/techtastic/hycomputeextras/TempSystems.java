@@ -12,7 +12,6 @@ import dev.cozygalvinism.hycompute.ComputerSystems;
 import dev.cozygalvinism.hycompute.components.ComputerBlock;
 import dev.cozygalvinism.hycompute.components.ComputerOn;
 import dev.cozygalvinism.hycompute.computer.Computer;
-import dev.cozygalvinism.hycompute.computer.LuaExecutor;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 
@@ -42,10 +41,10 @@ public class TempSystems {
         public void onComponentAdded(@NonNullDecl Ref<ChunkStore> ref, @NonNullDecl ComputerOn computerOn, @NonNullDecl Store<ChunkStore> store, @NonNullDecl CommandBuffer<ChunkStore> commandBuffer) {
             ComputerBlock block = commandBuffer.getComponent(ref, ComputerBlock.getComponentType());
             if (block != null) {
-                Computer computer = block.getComputer();
-                LuaExecutor executor = computer.getLuaExecutor();
-
-                TempUtil.generateNewTempAPI(executor);
+                commandBuffer.getExternalData().getWorld().execute(() -> {
+                    Computer computer = block.getComputer();
+                    HyComputeExtras.get().addAPIs(ref, store, commandBuffer, computer);
+                });
             }
         }
 
