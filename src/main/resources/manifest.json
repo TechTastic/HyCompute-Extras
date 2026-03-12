@@ -1,20 +1,20 @@
 {
-    "Group": "HytaleModding",
-    "Name": "ExamplePlugin",
-    "Version": "0.0.0",
-    "Description": "Description of your plugin",
+    "Group": "TechTastic",
+    "Name": "HyComputeExtras",
+    "Version": "1.0.0",
+    "Description": "Allows third party mods to create APIs!",
     "Authors": [
         {
-            "Name": "Your Name",
-            "Email": "your.email@example.com",
-            "Url": "https://your-website.com"
+            "Name": "TechTastic"
         }
     ],
-    "Website": "https://your-plugin-website.com",
+    "Website": "https://github.com/TechTastic/HyCompute-Extras",
     "DisabledByDefault": false,
     "IncludesAssetPack": false,
-    "Dependencies": {},
+    "Dependencies": {
+        "HyCompute:HyCompute": "*"
+    },
     "OptionalDependencies": {},
     "ServerVersion": "*",
-    "Main": "dev.hytalemodding.ExamplePlugin"
+    "Main": "io.github.techtastic.hycomputeextras.HyComputeExtras"
 }
