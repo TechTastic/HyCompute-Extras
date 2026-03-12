@@ -1,4 +1,4 @@
-rootProject.name = "dev.hytalemodding"
+rootProject.name = "HyCompute-Extras"
 
 plugins {
     // See documentation on https://scaffoldit.dev
@@ -21,8 +21,12 @@ hytale {
     }
 
     manifest {
-        Group = "HytaleModding"
-        Name = "ExamplePlugin"
-        Main = "dev.hytalemodding.ExamplePlugin"
+        Group = "TechTastic"
+        Name = "HyComputeExtras"
+        Main = "io.github.techtastic.hycomputeextras.HyComputeExtras"
+        Version = "1.0.0"
+        Description = "Allows third party mods to create APIs!"
+        Authors = listOf(HytaleManifest.Author("TechTastic"))
+        Website = "https://github.com/TechTastic/HyCompute-Extras"
     }
 }
