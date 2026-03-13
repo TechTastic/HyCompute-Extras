@@ -76,16 +76,21 @@ public class LuaFunctionProcessor {
             ArrayList<Object> parameters = new ArrayList<>();
             for (int i = 0; i < this.parameterTypes.length; i++) {
                 Class<?> parameterType = this.parameterTypes[i];
-                LuaValue value = varargs.arg(i);
+                LuaValue value = varargs.arg(i + 1);
                 Object parameter = LuaConversionUtil.toJava(value);
-                if (parameterType.isInstance(parameter))
-                    parameters.add(parameter);
-                else
+                if (LuaConversionUtil.isCompatible(parameterType, parameter))
+                    parameters.add(LuaConversionUtil.convertCompatibleParameters(parameterType, parameter));
+                else {
+                    HyComputeExtras.get().getLogger().atInfo().log("Am I the issue???");
                     throw ErrorFactory.typeError(value, parameterType.getSimpleName());
+                }
             }
+
+            HyComputeExtras.get().getLogger().atInfo().log(parameters.toString());
 
             try {
                 Object object = this.method.invoke(this.api, parameters.toArray());
+                HyComputeExtras.get().getLogger().atInfo().log(object != null ? object.toString() : "null");
                 return LuaConversionUtil.toLua(object);
             } catch (Exception e) {
                 throw LuaError.wrap(e);
